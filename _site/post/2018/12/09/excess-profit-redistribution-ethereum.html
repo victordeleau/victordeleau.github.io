@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Excess profit redistribution using an Ethereum smart contract | Victor Deleau ‘s website</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Excess profit redistribution using an Ethereum smart contract" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Smart contract are a new software technology which are able to replace third-parties in a typical contractual situation. They are running in a decentralised manner on a blockchain   network, are almost autonomous, and are secured by modern cryptography like Bitcoin. The first blockchain platform to have implemented and mature them is Ethereum." />
+<meta property="og:description" content="Smart contract are a new software technology which are able to replace third-parties in a typical contractual situation. They are running in a decentralised manner on a blockchain   network, are almost autonomous, and are secured by modern cryptography like Bitcoin. The first blockchain platform to have implemented and mature them is Ethereum." />
+<link rel="canonical" href="http://localhost:4000/post/2018/12/09/excess-profit-redistribution-ethereum.html" />
+<meta property="og:url" content="http://localhost:4000/post/2018/12/09/excess-profit-redistribution-ethereum.html" />
+<meta property="og:site_name" content="Victor Deleau ‘s website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-09T19:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Smart contract are a new software technology which are able to replace third-parties in a typical contractual situation. They are running in a decentralised manner on a blockchain   network, are almost autonomous, and are secured by modern cryptography like Bitcoin. The first blockchain platform to have implemented and mature them is Ethereum.","@type":"BlogPosting","url":"http://localhost:4000/post/2018/12/09/excess-profit-redistribution-ethereum.html","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/image/favicon_small.png"}},"headline":"Excess profit redistribution using an Ethereum smart contract","dateModified":"2018-12-09T19:00:00-05:00","datePublished":"2018-12-09T19:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/post/2018/12/09/excess-profit-redistribution-ethereum.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="shortcut icon" type="image/png" href="/image/favicon_small.png"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Victor Deleau 's website" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Victor Deleau &#39;s website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Excess profit redistribution using an Ethereum smart contract</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-09T19:00:00-05:00" itemprop="datePublished">Dec 9, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Smart contract are a new software technology which are able to replace third-parties in a typical contractual situation. They are running in a decentralised manner on a blockchain   network, are almost autonomous, and are secured by modern cryptography like Bitcoin. The first blockchain platform to have implemented and mature them is Ethereum.</p>
+
+<p>I - Introduction</p>
+
+<p>II - Environment setup</p>
+
+<p>III - Smart contract code</p>
+
+<p>IV - Deployment</p>
+
+<p>V - Testing</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>In this post I will go through the different phases of deployment of an Ethereum smart contract. We will use the Solidity language. Here is the plot of the smart contract we will try to deploy: Whenever a business wants to invest into something and make it available to his clients, he will choose a first conservative price which will increase the probability for him to get his investment back. Then, if the product is successful, the business will lower the price in order to attract even more client and maximize his profit. In such situation, the first client are losing because they are paying more than they should. To solve this situation, we will first choose a first conservative price for the business. Then we will create a smart contract which will gather every new payment. When the sum of the money gathered reach the ReturnOverInvestment event (ROI), the smart contract will send the specified amount to the business. Then the smart contract will continue to gather payment until a specified end date. The remaining fund will then be equally distributed to every client, such that they would have paid the same amount of money for the object or service associated.</p>
+
+<h3 id="environment-setup">Environment setup</h3>
+
+<p>Now let’s see how we could implement this idea. First we need to setup an Ethereum coding environment. In order to interact with the Ethereum network, we need to install an   Ethereum node. They are several node software available; here we will use Geth, a Go implementation which is well maintained by the community. A Geth node support three kinds of synchronisation which determines what you can do with them: full node, fast node and light node. I won’t go into details about it but because we want to have a fast and easy access we will use a light node which can synchronise in less than a minute. Personally I am running one on a RaspberryPi server and connect myself to it using SSH. We will add the ‘–rinkeby’ option which will connect us to a testnet instead of the mainnet: it allows us not to spend real and valuable Ether while testing.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>geth --syncmode 'light' --rinkeby console
+</code></pre></div></div>
+
+<p>We now have access to a javascript console known as JRSE [https://ethereum.gitbooks.io/frontier-guide/content/jsre.html]. We will use this console to interact with the Ethereum blockchain. Let’s create an address and check it’s current balance.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; personal.newAccount('fairbusiness')
+'0x6eb9f04ae037808370f5e18870d2cfe89792abe4'
+&gt; eth.accounts[0] '0x6eb9f04ae037808370f5e18870d2cfe89792abe4'
+&gt; eth.getBalance(eth.accounts[0])
+0
+</code></pre></div></div>
+
+<p>Unless you are extremely lucky, your address will be empty so you need to get some Ether. On the Rinkeby testnet, you can either receive them from someone or use the <a href="https://faucet.rinkeby.io/">Rinkeby Faucet</a>, a web application which will verify that your are not an automated program through one of your social media profile. If you are not on a social media, send me a message with your address and I will send   you some. The returned string is our public address, which we can shared with others in order to receive Ether. The string specified in the newAccount field is our wallet password, which is encrypted on the node to create our private key. Smart contract code  Here is the smart contract source code written in Solidity. We can see that the syntax is close to javascript.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* A fair and efficient business using an Ethereum smart contract Original idea by Jia Yuan Yu, coded by Victor Deleau, last modification: 26/03/18 */
+
+pragma solidity ^0.4.21;
+
+contract fair {
+
+// Declare variables ///////////////////////////////////////////////////////
+
+/* Address of the business */
+address public business;
+
+/* This is the name of the object/service for which the client will pay */
+string public entity;
+
+/* The sc will end at this block height */
+uint public finalBlock;
+
+/* The price setup by the business for the object/service */
+uint public price;
+
+/* The amount of money required to fire the ROI event */
+uint public target;
+
+/* The amount of money redistributed, if ROI event happened */
+uint public redistributedFund;
+
+/* A boolean variable for the ROI event, True if ROI happened */
+bool public roi = false;
+
+/* create array of client addresses */
+address[] private addressIndex;
+
+
+// Declare modifiers and events ////////////////////////////////////////////
+
+/* A modifier acts as a filter on other functions */
+modifier onlyOwner() {require (business == msg.sender);_;}
+
+/* emit an event when a new transaction is received */
+event newTransactionEvent(address client,address business,string entity,uint price);
+
+/* emit an event when we reach the target */
+event roiEvent(address business, string entity);
+
+/* emit an event when the sc is killed or has ended */
+event killEvent(address business, string entity, uint redistributedFund);
+
+
+// Functions ///////////////////////////////////////////////////////////////
+
+/* Constructor of the sc when deployed, same name as contract */
+function fair(string _entity, uint _finalBlock, uint _price, uint _target)
+    public {business = msg.sender;
+    entity = _entity;
+    finalBlock = _finalBlock;
+    price = _price;
+    target = _target;
+    redistributedFund = 0;
+}
+
+/* Distribute all the fund to the clients */
+function distribute() private returns (uint) {
+
+    // private because internal function
+    uint nbClient = addressIndex.length;
+    uint amount = address(this).balance / nbClient;
+    for (uint i = 0; i &lt; nbClient; i++) {
+        addressIndex[i].transfer(amount);
+    }
+    return amount;
+}
+
+/* Check if the target is reached. If yes pay the business */
+function checkState() private returns (bool) {
+    if ( roi == false ) {
+        // this can only happen one time
+        if ( address(this).balance &gt; target ){
+            roi = true; // set the roi variable
+            statebusiness.transfer(target); // pay the business
+            emit roiEvent(business, entity);
+        }
+    }
+}
+
+/* Check if the contract has ended or not */
+function checkTime() private view returns (bool) {
+    if ( block.number &gt; finalBlock ) { return true; }
+}
+
+/* A function to destroy the smart contract and distribute the funds */
+function kill() private {
+    /* Distribute the fund to the clients before killing the sc */
+    if (roi == true) { redistributedFund = distribute(); }
+
+    /* Kill the sc */
+    emit killEvent(business, entity, redistributedFund);
+    selfdestruct(business);
+}
+
+/* If someone want to trigger a state checking from outside */
+function manualCheck() public {checkState();
+
+    // check current state
+    if ( checkTime() == true ) { kill(); }
+
+// if contract has ended}
+
+// Fallback function//////////////////////////////////////////////////////
+
+/* fallback function, which get called when a transaction has no data */
+function () payable public {
+    if ( msg.value != price ) {
+        revert(); // reject transaction if not equal to price
+    }
+    else { // else new transaction is successfull
+        emit newTransactionEvent(msg.sender, business, entity, price);
+        addressIndex.push(msg.sender);
+    }
+    checkState(); // check current state
+    if ( checkTime() == true ) kill(); // if contract has ended
+}
+
+} // END
+</code></pre></div></div>
+
+<h3 id="deployment">Deployment</h3>
+
+<p>We first need to compile the source code into an ABI (Application Binary Interface, which allows us to interact with the smart contract) and a BIN file (the binary code which will be stored in the blockchain). For this matter we use <a href="http://solidity.readthedocs.io/en/v0.4.21/installing-solidity.html">solc</a>, the solidity compiler. I do not recommend the nodeJS implementation which is buggy, but rather to build it from source or to use the online compiler <a href="http://remix.ethereum.org/">remix</a>. Here is how to compile our source code using solc in the command line:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>solc --bin --abi fair.sol -o compil
+</code></pre></div></div>
+
+<p>We will get the output files in the local compil/ directory. Now we need to deploy the smart contract. There are several ways to do this, but here we are going to use the most basic and proven method using the geth console. First, we want to store the parameters of our smart contract and other usefull variables:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; var entity = 'tourte';
+&gt; var nb_day = 365;
+&gt; var price = 0.1;
+&gt; var target = 0.3;
+&gt; var final_block_number = ( (nb_day * 3600) / 15 ) + eth.blockNumber;
+&gt; var wei = 1000000000000000000;
+</code></pre></div></div>
+
+<p>Deploying a smart contract is nothing more than sending a transaction with some specific data included. We will build a transaction object piece by piece and then broadcast the transaction to the network. Manually store the content of the .bin file into a variable and create a contract object using the web3.eth.contract class with the content of the .abi file as parameter:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; var bin = "0x606060......70029";
+&gt; var abi = web3.eth.contract([{"constant":true,"inputs":[]........"type":"event"}]);
+</code></pre></div></div>
+
+<p>Create a new transaction object with the right Gas amount. Gas is a payment unit for miners in charge of processing your transaction. The Gas price is specified in wei (10**⁻18 Ether) and vary according to the network current state. When you want to make a transaction, you can specify your Gas price (in wei) and the maximum amount of Gas that you are willing to spend. Because miners are here to make profits, they will pick up in priority transactions with the highest Gas price. If your Gas price is too low, you take the risk that your transaction will never be mined. On the other side, if the maximum Gas amount that you allow to be used is to low for what you ask, your transaction will fail for running out of Gas, but you will still have to pay for the computation done by the miner. Here is how to estimate those parameters when you make a transaction:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; var gas_price = web3.eth.gasPrice;
+&gt; var transaction_object = { from: web3.eth.accounts[0], data: bin };
+&gt; var cost = web3.eth.estimateGas(transactionObject);
+&gt; var fee = gas_price * cost;
+&gt; fee / wei
+0.000812873
+</code></pre></div></div>
+
+<p>So 0.000812873 Ether is the price we would have to pay in order to deploy our smart contract on the Ethereum blockchain. Not much right ? Also note that Gas not used by the miner will be returned to you. Because the size of the Ethereum blockchain is increasing exponentialy, Ethereum developers are thinking about creating a <a href="https://ambcrypto.com/ethereum-eths-creator-to-charge-a-fee-for-data-storage-developers-in-trouble/">storage fee</a> to keep our data or smart contract stored into the blockchain. While this might not be a very popular proposition, it could be a long term benefit for Ethereum. Let’s get back to the deployment of the smart contract. We can now update our transaction object, unlock our local wallet and then deploy the smart contract:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; var transaction_object = { from: web3.eth.accounts[0], data: bin, gas: cost*1.1 };
+&gt; personal.unlockAccount(eth.accounts[0], "fairbusiness")
+true
+&gt; var fair = abi.new(    entity, finalBlockNumber, price*wei, target*wei,    transactionObject, function (e, contract){       console.log(e, contract, "Contract waiting to be mined ...");       if (typeof contract.address !== 'undefined') {            console.log('Contract mined! address: ' + contract.address            + ' transactionHash: ' + contract.transactionHash);    } })
+</code></pre></div></div>
+
+<p>We created a ‘fair’ smart contract object which contain every thing we need to communicate with our smart contract (which is not mined until specified). If you wait a minute or so, the callback function will inform you that your contract has been mined (or not). In case of success, the smart contract address will be stored inside the fair object:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; fair.address
+"0xea93952b7a1b2a9e413cc31a981f30f9adef2e1c"
+&gt; fair.entity()
+"tourte"
+</code></pre></div></div>
+
+<p>That’s it, our contract is now on the Ethereum rinkeby blockchain, and the procedure is the same for the mainnet.</p>
+
+<h3 id="testing">Testing</h3>
+
+<p>Let’s imagine that I am a client and I want to pay for the specified object or service (described by the ‘entity’ variable):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; eth.sendTransaction({   from:eth.accounts[0],   to:fair.address,   value: web3.toWei(0.2, "ether") });
+&gt; "0x6473673030f3b34112b85c406c83425be7a5fea126f5f4a62121f7cad0541717"
+We created a new transaction which will trigger the default function() of the smart contract. The string returned is the TX (transaction hash) of the transaction. It allows us to check the state of the transaction.
+&gt; eth.getTransaction(   "0x6473673030f3b34112b85c406c83425be7a5fea126f5f4a62121f7cad0541717");
+{   blockHash: "0x1772c18aa68ae22f6df1f4bae3cc8d87164aa150425af3390d0f902f6716a3f0",   blockNumber: 2029215,   from: "0x75a47d8aea5b4029341960bc5e942826c934b297",   gas: 90000,   gasPrice: 2000000000,   hash: "0x6473673030f3b34112b85c406c83425be7a5fea126f5f4a62121f7cad0541717",   input: "0x",   nonce: 46,   r: "0x2ce0f72f633e65325010054e57afdde277ea3c200e3ce128c139f38ef9386d30",   s: "0x7ff7e52dd58d074c6372af25e3c13060ad32ed04c07e436df3d836e18a14201b",   to: "0xea93952b7a1b2a9e413cc31a981f30f9adef2e1c",   transactionIndex: 4,   v: "0x2b",   value: 200000000000000000 }
+</code></pre></div></div>
+
+<p>If you check the amount of ether you have on your address after a few minutes, you will see that it wasn’t debited of the transaction of 0.2 Ether you just made. That is because the smart contract verified the amount of Ether received to see if it matched the price of the entity (which is of 0.1 ETH). Our transaction was therefore rejected ! We can also see that on a blockchain explorer
+[https://rinkeby.etherscan.io/tx/0x6473673030f3b34112b85c406c83425be7a5fea126f5f4a62121f7cad0541717]
+. If we make another transaction with the right price now:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; eth.sendTransaction({   from:eth.accounts[0],   to:fair.address,   value: web3.toWei(fair.price(), "wei") });
+"0xe25f5d16c16a06155a2fbfe5a25f0a5c6db25917a74d85b155c8c1b7de510b11"
+</code></pre></div></div>
+
+<p>This time, we were indeed debited from the transaction amount. If we send three more transaction with the same amount of Ether, we will reach the target (0.3 ETH) and the smart contract will send us a payment for the ROI event, as specified in the source code, because we are the creator of the smart contract. While it hasn’t been completely done here, it is extremely important to test a smart contract thoroughly. Huge amount of Ether were lost or stolen in the past because smart contract had flaws. Learning more by reading the <a href="https://solidity.readthedocs.io/en/v0.4.21/">documentation</a>, trying to consider every possible cases, and creating a complete test procedure to apply is heavily recommended.</p>
+
+  </div><a class="u-url" href="/post/2018/12/09/excess-profit-redistribution-ethereum.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Victor Deleau &#39;s website</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            </li><li><a class="u-email" href="mailto:victor{.}deleau{@}gmx{.}com">victor{.}deleau{@}gmx{.}com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/victordeleau"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">GitHub</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Thoughts, ideas and how-to</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-126257947-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>
