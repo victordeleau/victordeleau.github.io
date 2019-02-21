@@ -1,0 +1,42 @@
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a, a:hover,a:visited {
+    color:#000;
+    text-decoration: none;
+}
+
+
+#center {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 820px;
+    border: 5px solid white;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+#left {
+    position: relative;
+    height: 300px;
+    width: 400px;
+    float: left;
+}
+
+#right {
+    position: relative;
+    padding-top: 50px;
+}
+
+.social {
+    position: absolute;
+    top: 275px;
+    left: 50px;
+}
+
+.mypic {
+    position: absolute;
+    clip: rect(25px, auto, auto, auto);
+}
