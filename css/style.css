@@ -12,7 +12,7 @@ a, a:hover,a:visited {
 #center {
     margin: 0 auto;
     margin-top: 50px;
-    width: 820px;
+    width: 800px;
     border: 5px solid white;
     padding: 10px;
     background-color: #FFFFFF;
@@ -27,13 +27,13 @@ a, a:hover,a:visited {
 
 #right {
     position: relative;
-    padding-top: 50px;
+    padding-top: 30px;
+    top: 0px;
 }
 
 .social {
     position: absolute;
-    top: 275px;
-    left: 50px;
+    top: 250px;
 }
 
 .mypic {

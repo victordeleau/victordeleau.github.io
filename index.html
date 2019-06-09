@@ -20,26 +20,37 @@
 
     <link rel="icon" type="image/png" href="image/favicon.png" />
 
+    <script>
+        // When the user clicks on <div>, open the popup
+        function myFunction() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("hide");
+          popup.classList.toggle("show");
+        }
+    </script>
+
 </head>
 
 <body>
     <div id="center">
         
         <div id="left">
-            <img class="mypic" src="image/victor_deleau.jpg" alt="victor deleau" width="320" >
+            <img class="mypic" src="image/victor_deleau_light.jpg" alt="victor deleau" width="320" >
 
             <div class="social">
 
                 <ul class="cv-social-media">
-                    <a class="animated fadeIn" href="https://twitter.com/deleauvictor"><li id="twitter" 
-                    class="icon-twitter"></li></a>
+                    <!--<a class="animated fadeIn" href="https://twitter.com/deleauvictor"><li id="twitter" 
+                    class="icon-twitter"></li></a>-->
 
-                    <a class="animated fadeIn" href="#"><li id="email" class="icon-email"></li></a>
+                    <a class="animated fadeIn" class="popup" onclick="myFunction()" ><li id="email" class="icon-email"></li></a>
 
-                    <a class="animated fadeIn" href="https://stackoverflow.com/users/7804910/waspco"><li id="stackoverflow" 
-                    class="icon-stackoverflow"></li></a>
+                    <!--<a class="animated fadeIn" href="https://stackoverflow.com/users/7804910/waspco"><li id="stackoverflow" 
+                    class="icon-stackoverflow"></li></a>-->
 
-                    <div id="github"><a class="animated fadeIn" href="https://github.com/victordeleau/"><img src="image/github.png" height="40px" style="position: absolute; left: 4px; top: 3px;"></a></div>
+                    <div id="github"><a class="animated fadeIn" href="https://github.com/victordeleau/" target="_blank">
+                        <img src="image/github.png" height="40px"></a>
+                    </div>
 
                 </ul>
                 <div id="clear"></div>
@@ -51,11 +62,16 @@
         <div id="right">
             <h3>Victor Deleau</h3>
             <a>
-            Master's degree student in Montréal interested by software development and the quest for general AI. 
+            Master's degree student in Montréal interested by software development and artificial intelligence.</br></br>
             Currently a software developer at <b><a href="https://www.calixa.co/">Calixa</a></b>
             as part of the 2019 <b><a href="https://www.nextcanada.com/next-ai">nextAI</a></b> cohort, and researching 
-            the field of recommendation systems for my thesis
+            autoencoders applied to recommendation systems for my master's thesis.
             </a>
+        </div>
+
+        <div id="myPopup" class="hide">
+            Contact me at </br>
+            <b>victor {dot} deleau {at} gmx {dot} com</b>
         </div>
 
     </div>

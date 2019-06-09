@@ -91,7 +91,6 @@
 .cv-social-media li {
 	width:42px;
 	height:35px;
-	display:inline-block;
 	font-size:26px;
 	background:#CCC;
 	float:left;
@@ -114,20 +113,35 @@
 }
 
 #github {
-	background:#FFFFFF;
+  background:#FFFFFF;
+  position: absolute;
 	-webkit-filter: invert(1);
 	filter: invert(1);
-	float: left;
-	height: 48px;
-	width: 48px;	
+	height: 40px;
+  width: 40px;
+  left: 60px;
+  padding: 4px;
 }
 
 #email {
-	background:#9C0;
-	height: 40px;
+  background:#E90;
+  height: 40px;
 }
 
 #stackoverflow {
 	background:#F60;
 	height: 40px;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+#myPopup {
+  position: absolute;
+  top: 380px;
 }
