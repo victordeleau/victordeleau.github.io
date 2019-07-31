@@ -123,6 +123,15 @@
   padding: 4px;
 }
 
+
+#linkedin {
+  position: absolute;
+	height: 40px;
+  width: 40px;
+  left: 120px;
+  padding: 0px;
+}
+
 #email {
   background:#E90;
   height: 40px;
