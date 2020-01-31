@@ -151,6 +151,7 @@
 }
 
 #myPopup {
-  position: absolute;
-  top: 380px;
+  position: relative;
+  top: 13px;
+  left: 145px;
 }
