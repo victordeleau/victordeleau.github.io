@@ -22,8 +22,8 @@
 
     <script>
         // When the user clicks on <div>, open the popup
-        function myFunction() {
-          var popup = document.getElementById("myPopup");
+        function display() {
+          var popup = document.getElementById("popup");
           popup.classList.toggle("hide");
           popup.classList.toggle("show");
         }
@@ -34,51 +34,44 @@
 <body>
     <div id="center">
         
-        <div id="left">
-            <img class="mypic" src="image/victor_deleau_light.jpg" alt="victor deleau" width="320" >
-
-            <div class="social">
-
-                </br></br>
-
-                <ul class="cv-social-media">
-                    <!--<a class="animated fadeIn" href="https://twitter.com/deleauvictor"><li id="twitter" 
-                    class="icon-twitter"></li></a>-->
-
-                    <a class="animated fadeIn" class="popup" onclick="myFunction()" ><li id="email" class="icon-email"></li></a>
-
-                    <!--<a class="animated fadeIn" href="https://stackoverflow.com/users/7804910/waspco"><li id="stackoverflow" 
-                    class="icon-stackoverflow"></li></a>-->
-
-                    <div id="github"><a class="animated fadeIn" href="https://github.com/victordeleau/" target="_blank">
-                        <img src="image/github.png" height="40px"></a>
-                    </div>
-
-                    <div id="linkedin"><a class="animated fadeIn" href="https://www.linkedin.com/in/victordeleau/" target="_blank">
-                        <img src="image/linkedin.jpg" height="48px"></a>
-                    </div>
-
-                    <div id="myPopup" class="hide">
-                        Contact me at <b>victor {dot} deleau {at} gmx {dot} com</b>
-                    </div>
-
-                </ul>
-                <div id="clear"></div>
-
-            </div>
-
+        <div id="photo">
+            <img class="myphoto" src="image/victor_deleau_light.jpg" alt="victor deleau" width="320">
         </div>
 
-        <div id="right">
+        <div id="description">
             <h3>Victor Deleau</h3>
-            <a>
-            Master's degree student and Software Developer.</br></br>
-            </a>
-            <a href="https://stackoverflow.com/users/7804910/victor-deleau"><img src="https://stackoverflow.com/users/flair/7804910.png" width="208" height="58" alt="profile for Victor Deleau at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Victor Deleau at Stack Overflow, Q&amp;A for professional and enthusiast programmers"></a>
+            <a>Software Developer</br></br></a>
         </div>
 
-        <div id="myPopup" class="hide">
-            Contact me at: </br> <b>victor {dot} deleau {at} gmx {dot} com</b>
+        </br>
+
+        <div id="social">
+
+            <a onclick="display()" href="#">
+                <div id="email" class=icon>
+                    <img src="image/mail.png" height="25px">
+                </div>
+            </a>
+
+            <a href="https://twitter.com/victordeleau" target="_blank">
+                <div id="twitter" class=icon>
+                    <img src="image/twitter.png" height="32px">
+                </div>
+            </a>
+
+            <a href="https://github.com/victordeleau/" target="_blank">
+                <div id="github" class=icon>
+                    <img src="image/github.png" height="33px">
+                </div>
+            </a>
+
+            <div id="linkedin" class=icon><a href="https://www.linkedin.com/in/victordeleau/" target="_blank">
+                <img src="image/linkedin.jpg" height="40px"></a>
+            </div>
+        </div>
+
+        <div id="popup" class="hide">
+        <a>Contact me at : </br> <b>victor {dot} deleau {at} gmx {dot} com</b></a>
         </div>
 
     </div>

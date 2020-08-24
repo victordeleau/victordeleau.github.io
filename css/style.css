@@ -1,45 +1,54 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    background: #159957;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #155799, #159957);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #155799, #159957); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
-a, a:hover,a:visited {
-    color:#000;
+h3, a, a:hover, a:visited, #popup{
+    color:rgb(255, 255, 255);
     text-decoration: none;
 }
 
-
 #center {
     margin: 0 auto;
-    margin-top: 60px;
     width: 630px;
-    height: 335px;
-    border: 2px solid black;
-    padding: 50px;
-    padding-top: 30px;
-    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 15%;
 }
 
-#left {
+#photo {
     position: relative;
-    height: 400px;
-    width: 380px;
     float: left;
+    border: 3px solid white;
+    border-radius: 3px;
 }
 
-#right {
+.myphoto {
     position: relative;
-    padding-top: 30px;
-    top: 0px;
+    clip: rect(auto, auto, auto, auto);
+    display: block;
 }
 
-.social {
-    position: absolute;
-    top: 250px;
-    width: 700px;
+#description {
+    position: relative;
+    padding-top: 50px;
+    float: right;
 }
 
-.mypic {
-    position: absolute;
-    clip: rect(25px, auto, auto, auto);
+#social {
+    position: relative;
+    top: 20px;
+    float: left;
+    clear: both;
+}
+
+#popup {
+    position: relative;
+    font-size: 0.8em;
+    float: right;
+    top: 18px;
 }

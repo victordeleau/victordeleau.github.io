@@ -32,7 +32,6 @@
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
-  text-align: center;
   /* opacity: .8; */
  
   /* For safety - reset parent styles, that can break glyph codes*/
@@ -78,68 +77,48 @@
 .icon-skype:before { content: '\e806'; } /* '' */
 .icon-deviantart:before { content: '\e80e'; } /* '' */
 
-
-/*** Social Media ****************************************************/
-.cv-social-media {
-	width:100%;
-	margin:0px;
-	padding:0;
-	overflow:hidden;
-	list-style:none;
-}
-
-.cv-social-media li {
-	width:42px;
-	height:35px;
-	font-size:26px;
-	background:#CCC;
-	float:left;
-	padding:8px 0px 0px 4px;
-	margin:0px 10px 0px 1px;
-}
-
-.cv-social-media a {
-	color:#FFF;
-}
-
-#facebook {
-	background:#3b5998;
-	height: 42px;
+.icon {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
+  border: 2px solid white;
+  border-radius: 3px;
 }
 
 #twitter {
-	background:#00a0FF;
-	height: 40px;
+  background:#50ABF1;
+  padding-top: 4px;
+  padding-left: 4px;
+  height: 36px;
+  width: 36px;
+}
+
+#email {
+  background:#ff49e1;
+  padding-top:8px;
+  padding-left:8px;
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  height: 32px;
+  width: 32px;
+  border: 2px solid black;
 }
 
 #github {
   background:#FFFFFF;
-  position: absolute;
 	-webkit-filter: invert(1);
-	filter: invert(1);
-	height: 40px;
-  width: 40px;
-  left: 60px;
-  padding: 4px;
+  filter: invert(1);
+  padding-top:3px;
+  padding-left:3px;
+  height: 37px;
+  width: 37px;
+  border: 2px solid black;
 }
-
 
 #linkedin {
-  position: absolute;
-	height: 40px;
-  width: 40px;
-  left: 120px;
-  padding: 0px;
-}
-
-#email {
-  background:#E90;
-  height: 40px;
-}
-
-#stackoverflow {
-	background:#F60;
-	height: 40px;
+  background:#FFFFFF;
 }
 
 .show {
@@ -148,10 +127,4 @@
 
 .hide {
   visibility: hidden;
-}
-
-#myPopup {
-  position: relative;
-  top: 13px;
-  left: 145px;
 }
