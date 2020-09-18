@@ -1,54 +1,116 @@
-
 body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
-    background: #159957;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #155799, #159957);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #155799, #159957); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  background: #159957;
+  background: -webkit-linear-gradient(
+    to right,
+    #155799,
+    #159957
+  );
+  background: linear-gradient(
+    to right,
+    #155799,
+    #159957
+  );
 }
 
-h3, a, a:hover, a:visited, #popup{
-    color:rgb(255, 255, 255);
-    text-decoration: none;
+h3,
+a,
+a:hover,
+a:visited,
+#popup {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 #center {
-    margin: 0 auto;
-    width: 630px;
-    padding: 20px;
-    margin-top: 15%;
+  margin: 0 auto;
+  width: 630px;
+  padding: 20px;
+  margin-top: 15%;
 }
 
 #photo {
-    position: relative;
-    float: left;
-    border: 3px solid white;
-    border-radius: 3px;
+  position: relative;
+  float: left;
+  border: 3px solid white;
+  border-radius: 3px;
 }
 
 .myphoto {
-    position: relative;
-    clip: rect(auto, auto, auto, auto);
-    display: block;
+  position: relative;
+  clip: rect(auto, auto, auto, auto);
+  display: block;
 }
 
 #description {
-    position: relative;
-    padding-top: 50px;
-    float: right;
+  position: relative;
+  padding-top: 50px;
+  float: right;
 }
 
 #social {
-    position: relative;
-    top: 20px;
-    float: left;
-    clear: both;
+  position: relative;
+  top: 20px;
+  float: left;
+  clear: both;
 }
 
 #popup {
-    position: relative;
-    font-size: 0.8em;
-    float: right;
-    top: 18px;
+  position: relative;
+  font-size: 0.8em;
+  float: right;
+  top: 18px;
+}
+
+.icon {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
+  border: 2px solid white;
+  border-radius: 3px;
+}
+
+#twitter {
+  background: #50abf1;
+  padding-top: 4px;
+  padding-left: 4px;
+  height: 36px;
+  width: 36px;
+}
+
+#email {
+  background: #ff49e1;
+  padding-top: 8px;
+  padding-left: 8px;
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  height: 32px;
+  width: 32px;
+  border: 2px solid black;
+}
+
+#github {
+  background: #ffffff;
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  padding-top: 3px;
+  padding-left: 3px;
+  height: 37px;
+  width: 37px;
+  border: 2px solid black;
+}
+
+#linkedin {
+  background: #ffffff;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
 }
