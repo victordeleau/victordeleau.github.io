@@ -1,1 +1,1 @@
-# A dead simple website HTML/CSS website
+# A dead simple website
